@@ -23,7 +23,7 @@ nodes:
     type: code
     path: chat.jinja2
   inputs:
-    deployment_name: gpt-5
+    deployment_name: gpt-5.1-4
     temperature: 1
     document_text: ${retrieval.output}
   connection: open_ai_connection
