@@ -16,6 +16,18 @@
         }
       },
       "source": "chat.jinja2"
+    },
+    "retrieval.py": {
+      "type": "python",
+      "inputs": {
+        "input1": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "retrieval.py",
+      "function": "my_python_tool"
     }
   }
 }
