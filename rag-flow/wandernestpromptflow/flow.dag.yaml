@@ -20,6 +20,7 @@ nodes:
   inputs:
     deployment_name: gpt-5
     temperature: 1
+    document_text: ${retrieval.output}
   connection: open_ai_connection
   api: chat
 - name: retrieval
