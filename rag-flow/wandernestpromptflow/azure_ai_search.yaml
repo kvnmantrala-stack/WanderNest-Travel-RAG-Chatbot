@@ -2,12 +2,12 @@ $schema: https://azuremlschemas.azureedge.net/promptflow/latest/CognitiveSearchC
 
 name: "wandernestsearchsvchub"
 
-type: cognitive_Search
+type: cognitive_search
 
 api_key: "<user-input>"
 
 api_base: "https://wandernestsearchsvchub.search.windows.net"
 
-api_version: "2025-05-01-preview"
+api_version: "2025-05-01"
 
 auth_mode: key
