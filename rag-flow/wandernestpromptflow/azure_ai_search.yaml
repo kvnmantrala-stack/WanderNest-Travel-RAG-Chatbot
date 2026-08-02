@@ -4,7 +4,7 @@ name: "wandernestsearchsvchub"
 
 type: cognitive_search
 
-api_key: ${env:WANDERNESTSEARCHSVCHUB_API_KEY}
+api_key: ${env:Azure_AISearch_Connection_API_Key}
 
 api_base: "https://wandernestsearchsvchub.search.windows.net"
 
