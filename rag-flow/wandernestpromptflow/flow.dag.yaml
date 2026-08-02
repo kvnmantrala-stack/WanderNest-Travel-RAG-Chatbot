@@ -5,12 +5,17 @@ inputs:
   chat_history:
     type: list
     default: []
+    is_chat_history: true
+    is_chat_input: false
   question:
     type: string
+    is_chat_history: false
+    is_chat_input: true
 outputs:
   answer:
     type: string
     reference: ${chat.output}
+    is_chat_output: true
 nodes:
 - name: chat
   type: llm
