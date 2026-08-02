@@ -1,0 +1,39 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  chat_history:
+    type: list
+    default: []
+    is_chat_history: true
+    is_chat_input: false
+  question:
+    type: string
+    is_chat_history: false
+    is_chat_input: true
+outputs:
+  answer:
+    type: string
+    reference: ${chat.output}
+    is_chat_output: true
+nodes:
+- name: chat
+  type: llm
+  source:
+    type: code
+    path: chat.jinja2
+  inputs:
+    deployment_name: gpt-5.1-4
+    temperature: 1
+    document_text: ${retrieval.output}
+  connection: open_ai_connection
+  api: chat
+- name: retrieval
+  type: python
+  source:
+    type: code
+    path: retrieval.py
+  inputs:
+    query: ${inputs.question}
+    search_connection: wandernestsearchsvchub
+    index_name: wandernestsearchindexhub
