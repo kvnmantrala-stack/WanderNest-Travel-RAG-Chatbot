@@ -20,8 +20,6 @@ nodes:
   inputs:
     deployment_name: gpt-5
     temperature: 1
-    chat_history: ${inputs.chat_history}
-    question: ${inputs.question}
   connection: open_ai_connection
   api: chat
 - name: retrieval
@@ -29,4 +27,7 @@ nodes:
   source:
     type: code
     path: retrieval.py
-  inputs: {}
+  inputs:
+    query: ${inputs.question}
+    search_connection: wandernestsearchsvchub
+    index_name: wandernestsearchindexhub

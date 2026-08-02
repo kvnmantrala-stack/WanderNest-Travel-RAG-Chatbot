@@ -4,12 +4,7 @@
     "chat.jinja2": {
       "type": "llm",
       "inputs": {
-        "chat_history": {
-          "type": [
-            "string"
-          ]
-        },
-        "question": {
+        "document_text": {
           "type": [
             "string"
           ]
@@ -20,14 +15,31 @@
     "retrieval.py": {
       "type": "python",
       "inputs": {
-        "input1": {
+        "query": {
           "type": [
             "string"
           ]
+        },
+        "search_connection": {
+          "type": [
+            "CognitiveSearchConnection"
+          ]
+        },
+        "index_name": {
+          "type": [
+            "string"
+          ]
+        },
+        "top_k": {
+          "type": [
+            "int"
+          ],
+          "default": "3"
         }
       },
+      "description": "Retrieve documents from Azure AI Search based on the user query.",
       "source": "retrieval.py",
-      "function": "my_python_tool"
+      "function": "retrieve_documents"
     }
   }
 }
