@@ -21,7 +21,7 @@
         },
         "search_connection": {
           "type": [
-            "CognitiveSearchConnection"
+            "object"
           ]
         },
         "index_name": {
@@ -36,7 +36,6 @@
           "default": "3"
         }
       },
-      "description": "Retrieve relevant document chunks from Azure AI Search.",
       "source": "retrieval.py",
       "function": "retrieve_documents"
     }
