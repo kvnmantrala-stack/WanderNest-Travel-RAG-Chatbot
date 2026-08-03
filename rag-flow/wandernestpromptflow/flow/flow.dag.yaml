@@ -26,6 +26,8 @@ nodes:
     deployment_name: gpt-5.1-4
     temperature: 1
     document_text: ${retrieval.output}
+    response_format:
+      type: text
   connection: open_ai_connection
   api: chat
 - name: retrieval
@@ -36,4 +38,4 @@ nodes:
   inputs:
     query: ${inputs.question}
     search_connection: wandernestsearchsvchub
-    index_name: wandernestsearchndexhub
+    index_name: wandernestsearchindexhub
