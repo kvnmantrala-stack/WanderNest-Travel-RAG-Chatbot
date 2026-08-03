@@ -11,11 +11,11 @@ inputs:
     type: string
     is_chat_history: false
     is_chat_input: true
+    default: ""
 outputs:
   answer:
     type: string
     reference: ${chat.output}
-    is_chat_output: true
 nodes:
 - name: chat
   type: llm
