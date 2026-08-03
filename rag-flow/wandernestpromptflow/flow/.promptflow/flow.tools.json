@@ -36,7 +36,7 @@
           "default": "3"
         }
       },
-      "description": "Retrieve documents from Azure AI Search based on the user query.",
+      "description": "Retrieve relevant document chunks from Azure AI Search.",
       "source": "retrieval.py",
       "function": "retrieve_documents"
     }
