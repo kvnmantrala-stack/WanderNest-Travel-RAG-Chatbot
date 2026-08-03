@@ -34,12 +34,16 @@ def retrieve_documents(
             # We also try to fetch 'title' or 'sourcepage' for better context if available.
             content = result.get("chunk", "")
                source = result.get("title", "")
+            content = result.get("chunk", "")
+source = result.get("title", "")
 
-    if content:
-        if source:
+if content:
+    if source:
         docs.append(f"Source: {source}\n\n{content}")
-        else:
+    else:
         docs.append(content)
+
+    
         return "\n\n".join(docs)
     except Exception as e:
         return f"Error retrieving documents: {str(e)}"
