@@ -32,12 +32,14 @@ def retrieve_documents(
         for result in results:
             # Assuming 'content' is the main field. Adjust based on your index schema.
             # We also try to fetch 'title' or 'sourcepage' for better context if available.
-            content = result.get('content') or result.get('text') or str(result)
-            source = result.get('sourcepage') or result.get('title') or ""         
-            if source:
-                docs.append(f"Source: {source}\nContent: {content}")
-            else:
-                docs.append(content)
+            content = result.get("chunk", "")
+               source = result.get("title", "")
+
+    if content:
+        if source:
+        docs.append(f"Source: {source}\n\n{content}")
+        else:
+        docs.append(content)
         return "\n\n".join(docs)
     except Exception as e:
         return f"Error retrieving documents: {str(e)}"
