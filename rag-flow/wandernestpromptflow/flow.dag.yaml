@@ -36,4 +36,4 @@ nodes:
   inputs:
     query: ${inputs.question}
     search_connection: wandernestsearchsvchub
-    index_name: wandernestsearchndexhub
+    index_name: wandernestsearchindexhub
