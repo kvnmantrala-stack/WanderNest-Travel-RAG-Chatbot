@@ -10,7 +10,7 @@ def retrieve_documents(
     search_connection: CognitiveSearchConnection,
     index_name: str,
     top_k: int = 3
-) -> str:
+) -> str:  return "THIS IS THE LATEST RETRIEVAL.PY"
     """
     Retrieve relevant document chunks from Azure AI Search.
     """
