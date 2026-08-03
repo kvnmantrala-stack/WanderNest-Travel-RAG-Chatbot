@@ -1,9 +1,8 @@
 from promptflow import tool
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
-from promptflow.connections import AzureOpenAIConnection, CognitiveSearchConnection
+from promptflow.connections import CognitiveSearchConnection
 
-# NOTE: Make sure to run the following command in the terminal to use this code: pip install azure-search-documents
 
 @tool
 def retrieve_documents(
@@ -13,37 +12,44 @@ def retrieve_documents(
     top_k: int = 3
 ) -> str:
     """
-    Retrieve documents from Azure AI Search based on the user query.
+    Retrieve relevant document chunks from Azure AI Search.
     """
+
     if not query:
         return ""
 
     try:
-        # Initialize the SearchClient
+        # Create Search Client
         search_client = SearchClient(
             endpoint=search_connection.api_base,
             index_name=index_name,
-            credential=AzureKeyCredential(search_connection.api_key))
-        # Perform the search
-        # Note: This uses simple text search. For vector/hybrid, you'd generate embeddings first.
-        results = search_client.search(search_text=query, top=top_k)
-        # Process results
+            credential=AzureKeyCredential(search_connection.api_key)
+        )
+
+        # Execute search
+        results = search_client.search(
+            search_text=query,
+            top=top_k
+        )
+
         docs = []
+
         for result in results:
-            # Assuming 'content' is the main field. Adjust based on your index schema.
-            # We also try to fetch 'title' or 'sourcepage' for better context if available.
+            # Extract fields from your index
             content = result.get("chunk", "")
-               source = result.get("title", "")
-            content = result.get("chunk", "")
-source = result.get("title", "")
+            source = result.get("title", "")
 
-if content:
-    if source:
-        docs.append(f"Source: {source}\n\n{content}")
-    else:
-        docs.append(content)
+            if content:
+                if source:
+                    docs.append(
+                        f"Source: {source}\n\n{content}"
+                    )
+                else:
+                    docs.append(content)
 
-    
+        # Return combined retrieved content
         return "\n\n".join(docs)
+
     except Exception as e:
-        return f"Error retrieving documents: {str(e)}"
+        print(f"Azure AI Search Error: {e}")
+        return ""
